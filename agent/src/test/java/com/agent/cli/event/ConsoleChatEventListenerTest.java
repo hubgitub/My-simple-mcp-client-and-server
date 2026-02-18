@@ -1,5 +1,6 @@
 package com.agent.cli.event;
 
+import com.agent.cli.i18n.Messages;
 import com.agent.cli.io.ConsoleIO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class ConsoleChatEventListenerTest {
     @Test
     void shouldPrintGoodbyeOnSessionEnd() {
         listener.onEvent(new ChatEvent.SessionEnded());
-        verify(consoleIO).println("Goodbye!");
+        verify(consoleIO).println(Messages.get("event.session.ended"));
     }
 
     @Test

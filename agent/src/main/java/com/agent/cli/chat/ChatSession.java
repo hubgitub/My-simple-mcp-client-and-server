@@ -2,6 +2,7 @@ package com.agent.cli.chat;
 
 import com.agent.cli.event.ChatEvent;
 import com.agent.cli.event.ChatEventListener;
+import com.agent.cli.i18n.Messages;
 import com.agent.cli.io.ConsoleIO;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class ChatSession {
 
     private static final Set<String> EXIT_COMMANDS = Set.of("exit", "quit", "bye");
-    private static final String PROMPT = "You: ";
+    private static final String PROMPT = Messages.get("session.prompt");
 
     private final AssistantService assistant;
     private final ConsoleIO consoleIO;

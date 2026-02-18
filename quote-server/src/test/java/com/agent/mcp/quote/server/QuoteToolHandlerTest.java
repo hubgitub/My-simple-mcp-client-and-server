@@ -2,6 +2,7 @@ package com.agent.mcp.quote.server;
 
 import com.agent.mcp.quote.common.Quote;
 import com.agent.mcp.quote.common.QuoteCategory;
+import com.agent.mcp.quote.server.i18n.Messages;
 import io.modelcontextprotocol.server.McpServerFeatures.SyncToolSpecification;
 import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.TextContent;
@@ -11,8 +12,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -84,6 +87,10 @@ class QuoteToolHandlerTest {
 
         assertTrue(result.isError());
         String text = ((TextContent) result.content().get(0)).text();
-        assertTrue(text.contains("Invalid category"));
+        String categories = Arrays.stream(QuoteCategory.values())
+                .map(Enum::name)
+                .collect(Collectors.joining(", "));
+        String expected = Messages.format("quote.invalid.category", "INVALID", categories);
+        assertEquals(expected, text);
     }
 }

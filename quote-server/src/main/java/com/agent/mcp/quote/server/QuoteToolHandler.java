@@ -2,6 +2,7 @@ package com.agent.mcp.quote.server;
 
 import com.agent.mcp.quote.common.Quote;
 import com.agent.mcp.quote.common.QuoteCategory;
+import com.agent.mcp.quote.server.i18n.Messages;
 import io.modelcontextprotocol.server.McpServerFeatures.SyncToolSpecification;
 import io.modelcontextprotocol.spec.McpSchema;
 import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
@@ -80,8 +81,8 @@ public class QuoteToolHandler {
                         return formatQuoteResult(quote);
                     } catch (IllegalArgumentException e) {
                         return new CallToolResult(
-                                List.of(new TextContent("Invalid category: " + categoryStr
-                                        + ". Valid categories are: " + categories)),
+                                List.of(new TextContent(Messages.format("quote.invalid.category",
+                                        categoryStr, categories))),
                                 true
                         );
                     }

@@ -2,6 +2,7 @@ package com.agent.mcp.quote.server;
 
 import com.agent.mcp.quote.common.Quote;
 import com.agent.mcp.quote.common.QuoteCategory;
+import com.agent.mcp.quote.server.i18n.Messages;
 
 import java.util.List;
 import java.util.Random;
@@ -58,7 +59,7 @@ public class InMemoryQuoteRepository implements QuoteRepository {
     public Quote getRandomQuoteByCategory(QuoteCategory category) {
         List<Quote> filtered = getQuotesByCategory(category);
         if (filtered.isEmpty()) {
-            throw new IllegalArgumentException("No quotes found for category: " + category);
+            throw new IllegalArgumentException(Messages.format("quote.no.quotes.for.category", category));
         }
         return filtered.get(random.nextInt(filtered.size()));
     }

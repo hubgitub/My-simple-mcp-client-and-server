@@ -1,5 +1,6 @@
 package com.agent.cli.event;
 
+import com.agent.cli.i18n.Messages;
 import com.agent.cli.io.ConsoleIO;
 
 public class ConsoleChatEventListener implements ChatEventListener {
@@ -14,14 +15,13 @@ public class ConsoleChatEventListener implements ChatEventListener {
     public void onEvent(ChatEvent event) {
         switch (event) {
             case ChatEvent.SessionStarted e ->
-                    consoleIO.println("Agent started with model: " + e.modelName()
-                            + "\nType 'exit' or 'quit' to end the session.\n");
+                    consoleIO.println(Messages.format("event.session.started", e.modelName()));
             case ChatEvent.AssistantResponseReceived e ->
-                    consoleIO.println("\nAssistant: " + e.response() + "\n");
+                    consoleIO.println(Messages.format("event.assistant.response", e.response()));
             case ChatEvent.ErrorOccurred e ->
-                    consoleIO.printError("Error: " + e.message());
+                    consoleIO.printError(Messages.format("event.error", e.message()));
             case ChatEvent.SessionEnded e ->
-                    consoleIO.println("Goodbye!");
+                    consoleIO.println(Messages.get("event.session.ended"));
             case ChatEvent.UserMessageReceived e -> {
                 // No console output needed for user messages
             }

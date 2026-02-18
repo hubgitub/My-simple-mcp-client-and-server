@@ -7,6 +7,7 @@ import com.agent.cli.config.AgentConfig;
 import com.agent.cli.config.AgentConfigBuilder;
 import com.agent.cli.event.ChatEventListener;
 import com.agent.cli.event.ConsoleChatEventListener;
+import com.agent.cli.i18n.Messages;
 import com.agent.cli.io.ConsoleIO;
 import com.agent.cli.io.DefaultConsoleIO;
 import com.agent.cli.llm.ChatModelProvider;
@@ -29,19 +30,19 @@ import java.util.concurrent.Callable;
         name = "agent",
         mixinStandardHelpOptions = true,
         version = "1.0.0",
-        description = "CLI agent using Ollama with MCP tool support"
+        resourceBundle = "messages"
 )
 public class AgentCommand implements Callable<Integer> {
 
-    @Option(names = {"-m", "--model"}, description = "Ollama model name (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-m", "--model"}, descriptionKey = "cli.option.model",
             defaultValue = "qwen3")
     private String model;
 
-    @Option(names = {"-u", "--url"}, description = "Ollama base URL (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-u", "--url"}, descriptionKey = "cli.option.url",
             defaultValue = "http://localhost:11434")
     private String ollamaUrl;
 
-    @Option(names = {"--mcp-server"}, description = "MCP server command (repeatable)",
+    @Option(names = {"--mcp-server"}, descriptionKey = "cli.option.mcp",
             arity = "1")
     private List<String> mcpServers = new ArrayList<>();
 
@@ -75,7 +76,7 @@ public class AgentCommand implements Callable<Integer> {
                 McpServerConfigParser parser = new McpServerConfigParser();
                 List<McpServerConfig> serverConfigs = parser.parseAll(config.mcpServerCommands());
                 mcpClients = clientManager.createClients(serverConfigs);
-                io.println("Connected to " + mcpClients.size() + " MCP server(s)");
+                io.println(Messages.format("agent.connected", mcpClients.size()));
             }
 
             AssistantService assistant = serviceFactory.create(modelProvider, config, mcpClients);
@@ -86,7 +87,7 @@ public class AgentCommand implements Callable<Integer> {
 
             return 0;
         } catch (Exception e) {
-            io.printError("Fatal error: " + e.getMessage());
+            io.printError(Messages.format("agent.fatal.error", e.getMessage()));
             return 1;
         }
     }

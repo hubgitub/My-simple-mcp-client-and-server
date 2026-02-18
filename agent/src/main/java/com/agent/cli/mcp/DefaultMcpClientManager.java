@@ -1,5 +1,6 @@
 package com.agent.cli.mcp;
 
+import com.agent.cli.i18n.Messages;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
@@ -50,7 +51,7 @@ public class DefaultMcpClientManager implements McpClientManager {
             try {
                 client.close();
             } catch (Exception e) {
-                log.error("Error closing MCP client", e);
+                log.error(Messages.get("mcp.client.close.error"), e);
             }
         }
         clients.clear();

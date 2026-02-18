@@ -1,4 +1,5 @@
 com/agent/mcp/quote/server/InMemoryQuoteRepository.class
-com/agent/mcp/quote/server/QuoteServerMain.class
+com/agent/mcp/quote/server/i18n/Messages.class
 com/agent/mcp/quote/server/QuoteRepository.class
 com/agent/mcp/quote/server/QuoteToolHandler.class
+com/agent/mcp/quote/server/QuoteServerMain.class

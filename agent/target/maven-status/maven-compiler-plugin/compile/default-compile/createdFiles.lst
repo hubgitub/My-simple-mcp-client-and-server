@@ -1,4 +1,5 @@
 com/agent/cli/config/AgentConfig.class
+com/agent/cli/i18n/Messages.class
 META-INF/native-image/picocli-generated/reflect-config.json
 com/agent/cli/event/ConsoleChatEventListener.class
 com/agent/cli/llm/ChatModelProvider.class

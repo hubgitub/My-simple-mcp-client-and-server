@@ -9,6 +9,7 @@
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/event/ChatEvent.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/event/ChatEventListener.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/event/ConsoleChatEventListener.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/i18n/Messages.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/io/ConsoleIO.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/io/DefaultConsoleIO.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/llm/ChatModelProvider.java

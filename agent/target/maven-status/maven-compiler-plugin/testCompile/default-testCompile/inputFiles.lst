@@ -1,0 +1,6 @@
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/AgentCommandTest.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/chat/ChatSessionTest.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/config/AgentConfigBuilderTest.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/event/ConsoleChatEventListenerTest.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/llm/ChatModelProviderFactoryTest.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/test/java/com/agent/cli/mcp/McpServerConfigParserTest.java

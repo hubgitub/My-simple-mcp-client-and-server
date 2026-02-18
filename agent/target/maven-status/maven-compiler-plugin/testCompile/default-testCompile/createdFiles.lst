@@ -1,0 +1,6 @@
+com/agent/cli/AgentCommandTest.class
+com/agent/cli/event/ConsoleChatEventListenerTest.class
+com/agent/cli/llm/ChatModelProviderFactoryTest.class
+com/agent/cli/mcp/McpServerConfigParserTest.class
+com/agent/cli/chat/ChatSessionTest.class
+com/agent/cli/config/AgentConfigBuilderTest.class

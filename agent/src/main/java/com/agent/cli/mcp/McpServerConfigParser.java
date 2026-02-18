@@ -1,5 +1,7 @@
 package com.agent.cli.mcp;
 
+import com.agent.cli.i18n.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class McpServerConfigParser {
 
     public McpServerConfig parse(String commandString) {
         if (commandString == null || commandString.isBlank()) {
-            throw new IllegalArgumentException("Command string must not be null or blank");
+            throw new IllegalArgumentException(Messages.get("mcp.command.null.or.blank"));
         }
 
         List<String> parts = splitCommand(commandString.trim());

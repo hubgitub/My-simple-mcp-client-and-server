@@ -4,12 +4,16 @@ import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
 import dev.langchain4j.mcp.client.transport.stdio.StdioMcpTransport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultMcpClientManager implements McpClientManager {
+
+    private static final Logger log = LoggerFactory.getLogger(DefaultMcpClientManager.class);
 
     private final List<McpClient> clients = new ArrayList<>();
     private final Duration toolExecutionTimeout;
@@ -46,8 +50,7 @@ public class DefaultMcpClientManager implements McpClientManager {
             try {
                 client.close();
             } catch (Exception e) {
-                // Log and continue closing remaining clients
-                System.err.println("Error closing MCP client: " + e.getMessage());
+                log.error("Error closing MCP client", e);
             }
         }
         clients.clear();

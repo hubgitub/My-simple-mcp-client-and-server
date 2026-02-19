@@ -7,10 +7,14 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class AssistantServiceFactory {
+
+    private static final Logger log = LoggerFactory.getLogger(AssistantServiceFactory.class);
 
     public AssistantService create(ChatModelProvider modelProvider, AgentConfig config, List<McpClient> mcpClients) {
         ChatLanguageModel chatModel = modelProvider.createChatModel();
@@ -21,9 +25,12 @@ public class AssistantServiceFactory {
                         config.chatMemoryConfig().maxMessages()));
 
         if (!mcpClients.isEmpty()) {
-            builder.toolProvider(McpToolProvider.builder()
+            McpToolProvider toolProvider = McpToolProvider.builder()
                     .mcpClients(mcpClients)
-                    .build());
+                    .build();
+            log.info("Registering MCP tool provider with {} client(s). " +
+                    "The LLM will autonomously decide when to invoke tools.", mcpClients.size());
+            builder.toolProvider(toolProvider);
         }
 
         return builder.build();

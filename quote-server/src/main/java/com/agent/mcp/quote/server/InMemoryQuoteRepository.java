@@ -6,6 +6,7 @@ import com.agent.mcp.quote.server.i18n.Messages;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class InMemoryQuoteRepository implements QuoteRepository {
@@ -14,7 +15,7 @@ public class InMemoryQuoteRepository implements QuoteRepository {
     private final Random random;
 
     public InMemoryQuoteRepository() {
-        this(new Random());
+        this(null);
     }
 
     public InMemoryQuoteRepository(Random random) {
@@ -52,7 +53,7 @@ public class InMemoryQuoteRepository implements QuoteRepository {
 
     @Override
     public Quote getRandomQuote() {
-        return quotes.get(random.nextInt(quotes.size()));
+        return quotes.get(nextInt(quotes.size()));
     }
 
     @Override
@@ -61,7 +62,11 @@ public class InMemoryQuoteRepository implements QuoteRepository {
         if (filtered.isEmpty()) {
             throw new IllegalArgumentException(Messages.format("quote.no.quotes.for.category", category));
         }
-        return filtered.get(random.nextInt(filtered.size()));
+        return filtered.get(nextInt(filtered.size()));
+    }
+
+    private int nextInt(int bound) {
+        return random != null ? random.nextInt(bound) : ThreadLocalRandom.current().nextInt(bound);
     }
 
     @Override

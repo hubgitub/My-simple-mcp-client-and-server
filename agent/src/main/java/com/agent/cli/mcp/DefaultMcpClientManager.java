@@ -30,6 +30,9 @@ public class DefaultMcpClientManager implements McpClientManager {
     @Override
     public List<McpClient> createClients(List<McpServerConfig> serverConfigs) {
         for (McpServerConfig config : serverConfigs) {
+            log.warn(Messages.format("mcp.server.launching", config.name(),
+                    String.join(" ", config.command())));
+
             McpTransport transport = new StdioMcpTransport.Builder()
                     .command(config.command())
                     .logEvents(false)

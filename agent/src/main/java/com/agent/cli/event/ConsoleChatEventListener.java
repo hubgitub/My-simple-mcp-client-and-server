@@ -2,6 +2,7 @@ package com.agent.cli.event;
 
 import com.agent.cli.i18n.Messages;
 import com.agent.cli.io.ConsoleIO;
+import com.agent.cli.io.OutputSanitizer;
 
 public class ConsoleChatEventListener implements ChatEventListener {
 
@@ -17,7 +18,8 @@ public class ConsoleChatEventListener implements ChatEventListener {
             case ChatEvent.SessionStarted e ->
                     consoleIO.println(Messages.format("event.session.started", e.modelName()));
             case ChatEvent.AssistantResponseReceived e ->
-                    consoleIO.println(Messages.format("event.assistant.response", e.response()));
+                    consoleIO.println(Messages.format("event.assistant.response",
+                            OutputSanitizer.stripAnsiEscapes(e.response())));
             case ChatEvent.ErrorOccurred e ->
                     consoleIO.printError(Messages.format("event.error", e.message()));
             case ChatEvent.SessionEnded e ->

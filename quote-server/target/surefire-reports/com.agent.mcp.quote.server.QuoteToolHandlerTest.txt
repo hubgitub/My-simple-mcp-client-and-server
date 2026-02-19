@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.agent.mcp.quote.server.QuoteToolHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.653 s -- in com.agent.mcp.quote.server.QuoteToolHandlerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.779 s -- in com.agent.mcp.quote.server.QuoteToolHandlerTest

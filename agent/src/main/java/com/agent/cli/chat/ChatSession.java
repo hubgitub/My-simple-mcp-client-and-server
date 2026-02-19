@@ -10,6 +10,8 @@ import java.util.Set;
 
 public class ChatSession {
 
+    static final int MAX_INPUT_LENGTH = 10_000;
+
     private static final Set<String> EXIT_COMMANDS = Set.of("exit", "quit", "bye");
     private static final String PROMPT = Messages.get("session.prompt");
 
@@ -35,6 +37,12 @@ public class ChatSession {
             }
 
             if (input.isBlank()) {
+                continue;
+            }
+
+            if (input.length() > MAX_INPUT_LENGTH) {
+                fireEvent(new ChatEvent.ErrorOccurred(
+                        Messages.format("session.input.too.long", MAX_INPUT_LENGTH), null));
                 continue;
             }
 

@@ -12,6 +12,7 @@
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/i18n/Messages.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/io/ConsoleIO.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/io/DefaultConsoleIO.java
+/Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/io/OutputSanitizer.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/llm/ChatModelProvider.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/llm/ChatModelProviderFactory.java
 /Users/hgregoire/Developpement/mcp/ollama-mcp-agent/agent/src/main/java/com/agent/cli/llm/OllamaChatModelProvider.java

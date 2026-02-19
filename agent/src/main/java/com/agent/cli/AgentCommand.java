@@ -17,10 +17,13 @@ import com.agent.cli.mcp.McpClientManager;
 import com.agent.cli.mcp.McpServerConfig;
 import com.agent.cli.mcp.McpServerConfigParser;
 import dev.langchain4j.mcp.client.McpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +36,8 @@ import java.util.concurrent.Callable;
         resourceBundle = "messages"
 )
 public class AgentCommand implements Callable<Integer> {
+
+    private static final Logger log = LoggerFactory.getLogger(AgentCommand.class);
 
     @Option(names = {"-m", "--model"}, descriptionKey = "cli.option.model",
             defaultValue = "qwen3")
@@ -59,6 +64,8 @@ public class AgentCommand implements Callable<Integer> {
                 .ollamaBaseUrl(ollamaUrl)
                 .mcpServerCommands(mcpServers != null ? mcpServers : Collections.emptyList())
                 .build();
+
+        validateOllamaUrl(config.ollamaBaseUrl());
 
         ConsoleIO io = consoleIO != null ? consoleIO : new DefaultConsoleIO();
         ChatModelProviderFactory providerFactory = modelProviderFactory != null
@@ -87,8 +94,24 @@ public class AgentCommand implements Callable<Integer> {
 
             return 0;
         } catch (Exception e) {
-            io.printError(Messages.format("agent.fatal.error", e.getMessage()));
+            log.debug("Fatal error", e);
+            io.printError(Messages.get("agent.fatal.error.generic"));
             return 1;
+        }
+    }
+
+    private void validateOllamaUrl(String url) {
+        try {
+            URI uri = URI.create(url);
+            String host = uri.getHost();
+            String scheme = uri.getScheme();
+            boolean isLocal = "localhost".equalsIgnoreCase(host)
+                    || "127.0.0.1".equals(host) || "::1".equals(host);
+            if ("http".equalsIgnoreCase(scheme) && !isLocal) {
+                log.warn(Messages.format("agent.url.insecure", url));
+            }
+        } catch (IllegalArgumentException e) {
+            log.warn(Messages.format("agent.url.invalid", url));
         }
     }
 }

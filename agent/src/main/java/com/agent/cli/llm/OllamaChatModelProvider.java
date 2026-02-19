@@ -3,7 +3,11 @@ package com.agent.cli.llm;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
+import java.time.Duration;
+
 public class OllamaChatModelProvider implements ChatModelProvider {
+
+    static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(120);
 
     private final String modelName;
     private final String baseUrl;
@@ -18,6 +22,7 @@ public class OllamaChatModelProvider implements ChatModelProvider {
         return OllamaChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName(modelName)
+                .timeout(DEFAULT_TIMEOUT)
                 .build();
     }
 

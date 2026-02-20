@@ -7,17 +7,17 @@ Includes a sample MCP server that provides random quotes.
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│                   Agent                      │
-│  ┌──────────┐  ┌───────────┐  ┌──────────┐ │
-│  │ PicoCLI  │→ │ LangChain4j│→ │  Ollama  │ │
-│  │ (CLI)    │  │ AiServices │  │  (LLM)   │ │
-│  └──────────┘  └─────┬─────┘  └──────────┘ │
-│                      │                       │
-│               ┌──────┴──────┐               │
-│               │McpToolProvider│               │
-│               └──────┬──────┘               │
-└──────────────────────┼──────────────────────┘
+┌────────────────────────────────────────────────┐
+│                   Agent                        │
+│  ┌──────────┐  ┌────────────┐  ┌──────────┐    │
+│  │ PicoCLI  │→ │ LangChain4j│→ │  Ollama  │    │
+│  │ (CLI)    │  │ AiServices │  │  (LLM)   │    │
+│  └──────────┘  └─────┬──────┘  └──────────┘    │
+│                      │                         │
+│               ┌──────┴──────┐                  │
+│               │McpToolProvider│                │
+│               └──────┬──────┘                  │
+└──────────────────────┼─────────────────────────┘
                        │ STDIO
               ┌────────┴────────┐
               │  Quote Server   │
@@ -140,15 +140,15 @@ ollama-mcp-agent/
 
 ## Technology Stack
 
-| Library | Version | Purpose |
-|---------|---------|---------|
-| Java | 21 | Language |
-| Maven | 3.x | Build tool |
-| LangChain4j | 1.0.0-beta2 | LLM orchestration |
-| PicoCLI | 4.7.7 | CLI parsing |
-| Java MCP SDK | 0.10.0 | MCP server |
-| JUnit 5 | 5.11.3 | Testing |
-| Mockito | 5.14.2 | Mocking |
+|   Library  | Version |   Purpose   |
+|------------|---------|-------------|
+| Java       | 21      | Language    |
+| Maven      | 3.x     | Build tool  |
+| LangChain4j| 1.0.0-b2| LLM orches. |
+| PicoCLI    | 4.7.7   | CLI parsing |
+| J MCP SD K | 0.10.0  | MCP server  |
+| JUnit 5    | 5.11.3  | Testing     |
+| Mockito    | 5.14.2  | Mocking     |
 
 ## ADR Documents
 
